@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Webtalk v2018.3 (64-bit)
+# SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+# 
+# Start of session at: Mon Mar 28 00:04:32 2022
+# Process ID: 24077
+# Current directory: /home/toni/Workfiles/ArtyA7_pmod/src/webtalk
+# Command line: wbtcv -mode batch -source sdk_webtalk.tcl
+# Log file: /home/toni/Workfiles/ArtyA7_pmod/src/webtalk/webtalk.log
+# Journal file: /home/toni/Workfiles/ArtyA7_pmod/src/webtalk/webtalk.jou
+#-----------------------------------------------------------
+source sdk_webtalk.tcl

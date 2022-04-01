@@ -1,7 +1,7 @@
 --Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
---Date        : Sun Mar 27 23:23:00 2022
+--Date        : Fri Apr  1 20:31:06 2022
 --Host        : Unyil running 64-bit Ubuntu 18.04.6 LTS
 --Command     : generate_target ArtyA7_design_wrapper.bd
 --Design      : ArtyA7_design_wrapper
@@ -51,38 +51,8 @@ end ArtyA7_design_wrapper;
 architecture STRUCTURE of ArtyA7_design_wrapper is
   component ArtyA7_design is
   port (
-    led_4bits_tri_o : out STD_LOGIC_VECTOR ( 3 downto 0 );
-    rgb_led_tri_o : out STD_LOGIC_VECTOR ( 11 downto 0 );
-    push_buttons_4bits_tri_i : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    dip_switches_4bits_tri_i : in STD_LOGIC_VECTOR ( 3 downto 0 );
     sys_clock : in STD_LOGIC;
     reset : in STD_LOGIC;
-    usb_uart_rxd : in STD_LOGIC;
-    usb_uart_txd : out STD_LOGIC;
-    ja_pin1_o : out STD_LOGIC;
-    ja_pin7_i : in STD_LOGIC;
-    ja_pin2_o : out STD_LOGIC;
-    ja_pin8_i : in STD_LOGIC;
-    ja_pin3_o : out STD_LOGIC;
-    ja_pin9_i : in STD_LOGIC;
-    ja_pin10_o : out STD_LOGIC;
-    ja_pin4_o : out STD_LOGIC;
-    ja_pin3_i : in STD_LOGIC;
-    ja_pin4_i : in STD_LOGIC;
-    ja_pin1_i : in STD_LOGIC;
-    ja_pin2_i : in STD_LOGIC;
-    ja_pin10_t : out STD_LOGIC;
-    ja_pin8_t : out STD_LOGIC;
-    ja_pin9_t : out STD_LOGIC;
-    ja_pin4_t : out STD_LOGIC;
-    ja_pin9_o : out STD_LOGIC;
-    ja_pin10_i : in STD_LOGIC;
-    ja_pin7_t : out STD_LOGIC;
-    ja_pin1_t : out STD_LOGIC;
-    ja_pin2_t : out STD_LOGIC;
-    ja_pin7_o : out STD_LOGIC;
-    ja_pin3_t : out STD_LOGIC;
-    ja_pin8_o : out STD_LOGIC;
     jb_pin1_o : out STD_LOGIC;
     jb_pin7_i : in STD_LOGIC;
     jb_pin2_o : out STD_LOGIC;
@@ -107,6 +77,12 @@ architecture STRUCTURE of ArtyA7_design_wrapper is
     jb_pin7_o : out STD_LOGIC;
     jb_pin3_t : out STD_LOGIC;
     jb_pin8_o : out STD_LOGIC;
+    dip_switches_4bits_tri_i : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    push_buttons_4bits_tri_i : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    led_4bits_tri_o : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    rgb_led_tri_o : out STD_LOGIC_VECTOR ( 11 downto 0 );
+    usb_uart_rxd : in STD_LOGIC;
+    usb_uart_txd : out STD_LOGIC;
     jc_pin1_o : out STD_LOGIC;
     jc_pin7_i : in STD_LOGIC;
     jc_pin2_o : out STD_LOGIC;
@@ -130,7 +106,31 @@ architecture STRUCTURE of ArtyA7_design_wrapper is
     jc_pin2_t : out STD_LOGIC;
     jc_pin7_o : out STD_LOGIC;
     jc_pin3_t : out STD_LOGIC;
-    jc_pin8_o : out STD_LOGIC
+    jc_pin8_o : out STD_LOGIC;
+    ja_pin1_o : out STD_LOGIC;
+    ja_pin7_i : in STD_LOGIC;
+    ja_pin2_o : out STD_LOGIC;
+    ja_pin8_i : in STD_LOGIC;
+    ja_pin3_o : out STD_LOGIC;
+    ja_pin9_i : in STD_LOGIC;
+    ja_pin10_o : out STD_LOGIC;
+    ja_pin4_o : out STD_LOGIC;
+    ja_pin3_i : in STD_LOGIC;
+    ja_pin4_i : in STD_LOGIC;
+    ja_pin1_i : in STD_LOGIC;
+    ja_pin2_i : in STD_LOGIC;
+    ja_pin10_t : out STD_LOGIC;
+    ja_pin8_t : out STD_LOGIC;
+    ja_pin9_t : out STD_LOGIC;
+    ja_pin4_t : out STD_LOGIC;
+    ja_pin9_o : out STD_LOGIC;
+    ja_pin10_i : in STD_LOGIC;
+    ja_pin7_t : out STD_LOGIC;
+    ja_pin1_t : out STD_LOGIC;
+    ja_pin2_t : out STD_LOGIC;
+    ja_pin7_o : out STD_LOGIC;
+    ja_pin3_t : out STD_LOGIC;
+    ja_pin8_o : out STD_LOGIC
   );
   end component ArtyA7_design;
   component IOBUF is

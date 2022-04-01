@@ -1,7 +1,7 @@
 --Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
---Date        : Sun Mar 27 23:22:59 2022
+--Date        : Fri Apr  1 20:31:06 2022
 --Host        : Unyil running 64-bit Ubuntu 18.04.6 LTS
 --Command     : generate_target ArtyA7_design.bd
 --Design      : ArtyA7_design
@@ -3829,6 +3829,7 @@ architecture STRUCTURE of ArtyA7_design is
     s_axi_rresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
     s_axi_rvalid : out STD_LOGIC;
     s_axi_rready : in STD_LOGIC;
+    ip2intc_irpt : out STD_LOGIC;
     gpio_io_i : in STD_LOGIC_VECTOR ( 3 downto 0 );
     gpio2_io_i : in STD_LOGIC_VECTOR ( 3 downto 0 )
   );
@@ -3973,7 +3974,7 @@ architecture STRUCTURE of ArtyA7_design is
     s_axi_rresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
     s_axi_rvalid : out STD_LOGIC;
     s_axi_rready : in STD_LOGIC;
-    intr : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    intr : in STD_LOGIC_VECTOR ( 4 downto 0 );
     processor_clk : in STD_LOGIC;
     processor_rst : in STD_LOGIC;
     irq : out STD_LOGIC;
@@ -3985,7 +3986,10 @@ architecture STRUCTURE of ArtyA7_design is
   port (
     In0 : in STD_LOGIC_VECTOR ( 0 to 0 );
     In1 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    dout : out STD_LOGIC_VECTOR ( 1 downto 0 )
+    In2 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    In3 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    In4 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    dout : out STD_LOGIC_VECTOR ( 4 downto 0 )
   );
   end component ArtyA7_design_microblaze_0_xlconcat_1;
   component ArtyA7_design_mdm_1_1 is
@@ -4232,6 +4236,7 @@ architecture STRUCTURE of ArtyA7_design is
     s_axi_aresetn : in STD_LOGIC
   );
   end component ArtyA7_design_PmodACL2_1_0;
+  signal PmodACL2_0_GPIO_Interrupt : STD_LOGIC;
   signal PmodACL2_0_Pmod_out_PIN10_I : STD_LOGIC;
   signal PmodACL2_0_Pmod_out_PIN10_O : STD_LOGIC;
   signal PmodACL2_0_Pmod_out_PIN10_T : STD_LOGIC;
@@ -4256,6 +4261,7 @@ architecture STRUCTURE of ArtyA7_design is
   signal PmodACL2_0_Pmod_out_PIN9_I : STD_LOGIC;
   signal PmodACL2_0_Pmod_out_PIN9_O : STD_LOGIC;
   signal PmodACL2_0_Pmod_out_PIN9_T : STD_LOGIC;
+  signal PmodACL2_1_GPIO_Interrupt : STD_LOGIC;
   signal PmodACL2_1_Pmod_out_PIN10_I : STD_LOGIC;
   signal PmodACL2_1_Pmod_out_PIN10_O : STD_LOGIC;
   signal PmodACL2_1_Pmod_out_PIN10_T : STD_LOGIC;
@@ -4304,12 +4310,15 @@ architecture STRUCTURE of ArtyA7_design is
   signal PmodAMP2_0_Pmod_out_PIN9_I : STD_LOGIC;
   signal PmodAMP2_0_Pmod_out_PIN9_O : STD_LOGIC;
   signal PmodAMP2_0_Pmod_out_PIN9_T : STD_LOGIC;
+  signal PmodAMP2_0_timer_interrupt : STD_LOGIC;
   signal axi_gpio_0_GPIO2_TRI_O : STD_LOGIC_VECTOR ( 11 downto 0 );
   signal axi_gpio_0_GPIO_TRI_O : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal axi_gpio_1_GPIO2_TRI_I : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal axi_gpio_1_GPIO_TRI_I : STD_LOGIC_VECTOR ( 3 downto 0 );
+  signal axi_gpio_1_ip2intc_irpt : STD_LOGIC;
   signal axi_uartlite_0_UART_RxD : STD_LOGIC;
   signal axi_uartlite_0_UART_TxD : STD_LOGIC;
+  signal axi_uartlite_0_interrupt : STD_LOGIC;
   signal clk_wiz_0_locked : STD_LOGIC;
   signal mdm_1_debug_sys_rst : STD_LOGIC;
   signal microblaze_0_Clk : STD_LOGIC;
@@ -4571,19 +4580,15 @@ architecture STRUCTURE of ArtyA7_design is
   signal microblaze_0_interrupt_ACK : STD_LOGIC_VECTOR ( 0 to 1 );
   signal microblaze_0_interrupt_ADDRESS : STD_LOGIC_VECTOR ( 31 downto 0 );
   signal microblaze_0_interrupt_INTERRUPT : STD_LOGIC;
-  signal microblaze_0_intr : STD_LOGIC_VECTOR ( 1 downto 0 );
+  signal microblaze_0_intr : STD_LOGIC_VECTOR ( 4 downto 0 );
   signal reset_1 : STD_LOGIC;
   signal rst_clk_wiz_0_100M_bus_struct_reset : STD_LOGIC_VECTOR ( 0 to 0 );
   signal rst_clk_wiz_0_100M_mb_reset : STD_LOGIC;
   signal rst_clk_wiz_0_100M_peripheral_aresetn : STD_LOGIC_VECTOR ( 0 to 0 );
   signal sys_clock_1 : STD_LOGIC;
-  signal NLW_PmodACL2_0_GPIO_Interrupt_UNCONNECTED : STD_LOGIC;
-  signal NLW_PmodACL2_1_GPIO_Interrupt_UNCONNECTED : STD_LOGIC;
-  signal NLW_PmodAMP2_0_timer_interrupt_UNCONNECTED : STD_LOGIC;
   signal NLW_axi_dynclk_0_LOCKED_O_UNCONNECTED : STD_LOGIC;
   signal NLW_axi_dynclk_0_PXL_CLK_5X_O_UNCONNECTED : STD_LOGIC;
   signal NLW_axi_dynclk_0_PXL_CLK_O_UNCONNECTED : STD_LOGIC;
-  signal NLW_axi_uartlite_0_interrupt_UNCONNECTED : STD_LOGIC;
   signal NLW_rst_clk_wiz_0_100M_interconnect_aresetn_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
   signal NLW_rst_clk_wiz_0_100M_peripheral_reset_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
   attribute BMM_INFO_PROCESSOR : string;
@@ -4791,7 +4796,7 @@ PmodACL2_0: component ArtyA7_design_PmodACL2_0_0
       AXI_LITE_SPI_wready => microblaze_0_axi_periph_M06_AXI_WREADY,
       AXI_LITE_SPI_wstrb(3 downto 0) => microblaze_0_axi_periph_M06_AXI_WSTRB(3 downto 0),
       AXI_LITE_SPI_wvalid => microblaze_0_axi_periph_M06_AXI_WVALID,
-      GPIO_Interrupt => NLW_PmodACL2_0_GPIO_Interrupt_UNCONNECTED,
+      GPIO_Interrupt => PmodACL2_0_GPIO_Interrupt,
       Pmod_out_pin10_i => PmodACL2_0_Pmod_out_PIN10_I,
       Pmod_out_pin10_o => PmodACL2_0_Pmod_out_PIN10_O,
       Pmod_out_pin10_t => PmodACL2_0_Pmod_out_PIN10_T,
@@ -4856,7 +4861,7 @@ PmodACL2_1: component ArtyA7_design_PmodACL2_1_0
       AXI_LITE_SPI_wready => microblaze_0_axi_periph_M11_AXI_WREADY,
       AXI_LITE_SPI_wstrb(3 downto 0) => microblaze_0_axi_periph_M11_AXI_WSTRB(3 downto 0),
       AXI_LITE_SPI_wvalid => microblaze_0_axi_periph_M11_AXI_WVALID,
-      GPIO_Interrupt => NLW_PmodACL2_1_GPIO_Interrupt_UNCONNECTED,
+      GPIO_Interrupt => PmodACL2_1_GPIO_Interrupt,
       Pmod_out_pin10_i => PmodACL2_1_Pmod_out_PIN10_I,
       Pmod_out_pin10_o => PmodACL2_1_Pmod_out_PIN10_O,
       Pmod_out_pin10_t => PmodACL2_1_Pmod_out_PIN10_T,
@@ -4966,7 +4971,7 @@ PmodAMP2_0: component ArtyA7_design_PmodAMP2_0_0
       Pmod_out_pin9_t => PmodAMP2_0_Pmod_out_PIN9_T,
       s_axi_aclk => microblaze_0_Clk,
       s_axi_aresetn => rst_clk_wiz_0_100M_peripheral_aresetn(0),
-      timer_interrupt => NLW_PmodAMP2_0_timer_interrupt_UNCONNECTED
+      timer_interrupt => PmodAMP2_0_timer_interrupt
     );
 axi_dynclk_0: component ArtyA7_design_axi_dynclk_0_0
      port map (
@@ -5024,6 +5029,7 @@ axi_gpio_1: component ArtyA7_design_axi_gpio_1_0
      port map (
       gpio2_io_i(3 downto 0) => axi_gpio_1_GPIO2_TRI_I(3 downto 0),
       gpio_io_i(3 downto 0) => axi_gpio_1_GPIO_TRI_I(3 downto 0),
+      ip2intc_irpt => axi_gpio_1_ip2intc_irpt,
       s_axi_aclk => microblaze_0_Clk,
       s_axi_araddr(8 downto 0) => microblaze_0_axi_periph_M02_AXI_ARADDR(8 downto 0),
       s_axi_aresetn => rst_clk_wiz_0_100M_peripheral_aresetn(0),
@@ -5046,7 +5052,7 @@ axi_gpio_1: component ArtyA7_design_axi_gpio_1_0
     );
 axi_uartlite_0: component ArtyA7_design_axi_uartlite_0_0
      port map (
-      interrupt => NLW_axi_uartlite_0_interrupt_UNCONNECTED,
+      interrupt => axi_uartlite_0_interrupt,
       rx => axi_uartlite_0_UART_RxD,
       s_axi_aclk => microblaze_0_Clk,
       s_axi_araddr(3 downto 0) => microblaze_0_axi_periph_M03_AXI_ARADDR(3 downto 0),
@@ -5178,7 +5184,7 @@ microblaze_0: component ArtyA7_design_microblaze_0_0
 microblaze_0_axi_intc: component ArtyA7_design_microblaze_0_axi_intc_1
      port map (
       interrupt_address(31 downto 0) => microblaze_0_interrupt_ADDRESS(31 downto 0),
-      intr(1 downto 0) => microblaze_0_intr(1 downto 0),
+      intr(4 downto 0) => microblaze_0_intr(4 downto 0),
       irq => microblaze_0_interrupt_INTERRUPT,
       processor_ack(1) => microblaze_0_interrupt_ACK(0),
       processor_ack(0) => microblaze_0_interrupt_ACK(1),
@@ -5488,9 +5494,12 @@ microblaze_0_local_memory: entity work.microblaze_0_local_memory_imp_1XXS6T2
     );
 microblaze_0_xlconcat: component ArtyA7_design_microblaze_0_xlconcat_1
      port map (
-      In0(0) => '0',
-      In1(0) => '0',
-      dout(1 downto 0) => microblaze_0_intr(1 downto 0)
+      In0(0) => axi_gpio_1_ip2intc_irpt,
+      In1(0) => PmodACL2_0_GPIO_Interrupt,
+      In2(0) => PmodAMP2_0_timer_interrupt,
+      In3(0) => PmodACL2_1_GPIO_Interrupt,
+      In4(0) => axi_uartlite_0_interrupt,
+      dout(4 downto 0) => microblaze_0_intr(4 downto 0)
     );
 rst_clk_wiz_0_100M: component ArtyA7_design_rst_clk_wiz_0_100M_1
      port map (

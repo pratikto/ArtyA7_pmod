@@ -2,10 +2,10 @@
 <Root MajorVersion="0" MinorVersion="36">
   <CompositeFile CompositeFileTopName="ArtyA7_design" CanBeSetAsTop="false" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
-    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1648398185"/>
-    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1648398185"/>
-    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1648398185"/>
-    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1648398185"/>
+    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1648819867"/>
+    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1648819867"/>
+    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1648819867"/>
+    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1648819867"/>
     <FileCollection Name="SOURCES" Type="SOURCES">
       <File Name="ip/ArtyA7_design_axi_gpio_0_0/ArtyA7_design_axi_gpio_0_0.xci" Type="IP">
         <Instance HierarchyPath="axi_gpio_0"/>
